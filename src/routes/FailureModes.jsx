@@ -10,8 +10,6 @@ function detectModeFromPath(pathname = "/") {
 }
 
 
-
-
 export default function FailureModes() {
   const location = useLocation(); // SSR-consistent
   const mode = () => detectModeFromPath(location.pathname);
