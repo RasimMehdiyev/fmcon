@@ -1,26 +1,47 @@
 import { createSignal } from "solid-js";
 
-export default function Chip({ phase = "text" }) {
-    const [hovered, setHovered] = createSignal(false);
+export default function Chip({ phase }) {
+  const [hovered, setHovered] = createSignal(false);
 
-    return (
-        <button
-            onClick={() => alert(`You clicked on ${phase}`)}
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
-            className={`group w-[170px] rounded-md h-[40px] text-center text-lg cursor-pointer flex items-center justify-center transition-colors duration-200 ${
-                hovered() ? "bg-[#266ACC]" : "bg-[#CED0D1]"
-            }`}
-        >
-            {hovered() ? (
-                <span className="duration-200 ease-in-out text-white text-4xl pb-2">
-                    +
-                </span>
-            ) : (
-                <span className="duration-200 ease-in-out">
-                    {phase}
-                </span>
-            )}
-        </button>
-    );
+  const bgClass = () => {
+    if (hovered()) {
+      switch (phase.toLowerCase()) {
+        case "pour":
+          return "bg-[#A3E6AC]"; // light green
+        case "hri":
+          return "bg-[#AF8AFF]";
+        case "mobile":
+          return "bg-[#F67F65]"; // light pink
+        default:
+          return "bg-[#266ACC]"; // blue for other phases
+      }
+    }
+    return "bg-[#CED0D1]"; // default gray when not hovered
+  };
+
+  const textClass = () => {
+    if (hovered()) {
+      return ["pour", "hri", "mobile"].includes(phase.toLowerCase())
+        ? "text-black"
+        : "text-white";
+    }
+    return "text-black";
+  };
+
+  return (
+    <button
+      onClick={() => (window.location.href = "/" + phase.toLowerCase())}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      class={`group w-[170px] rounded-md h-[40px] text-center text-lg cursor-pointer flex items-center justify-center transition-colors duration-200 ${bgClass()}`}
+    >
+      <span
+        class={`duration-200 ease-in-out ${
+          hovered() ? `${textClass()} text-4xl pb-2` : "text-black"
+        }`}
+      >
+        {hovered() ? "→" : phase.toUpperCase()}
+      </span>
+    </button>
+  );
 }

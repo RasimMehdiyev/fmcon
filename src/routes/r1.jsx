@@ -14,9 +14,9 @@ export default function About() {
       <div class="flex flex-col gap-4 items-center">
         <h1 class="text-lg font-bold">CHOOSE A PHASE</h1>
         <div class="flex flex-col gap-2 items-center">
-          <Chip phase="HRI PHASE" />
-          <Chip phase="POUR PHASE" />
-          <Chip phase="MOBILE PHASE" />
+          <Chip phase="hri" />
+          <Chip phase="pour" />
+          <Chip phase="mobile" />
         </div>
       </div>
 
