@@ -1,25 +1,40 @@
-import { A } from "@solidjs/router";
-import Counter from "~/components/Counter";
+import Chip from "~/components/Chip";
+import { createSignal, createEffect } from "solid-js";
+import ImageModal from "~/components/ImageModal";
 
 export default function About() {
+  const [openImage, setOpenImage] = createSignal(false);
+
+  createEffect(() => {
+    if (!openImage()) console.log("Image modal closed");
+  });
+
   return (
-    <main class="text-center mx-auto text-gray-700 p-4">
-      <h1 class="max-6-xs text-6xl text-sky-700 font-thin uppercase my-16">About Page</h1>
-      <Counter />
-      <p class="mt-8">
-        Visit{" "}
-        <a href="https://solidjs.com" target="_blank" class="text-sky-600 hover:underline">
-          solidjs.com
-        </a>{" "}
-        to learn how to build Solid apps.
-      </p>
-      <p class="my-4">
-        <A href="/" class="text-sky-600 hover:underline">
-          Home
-        </A>
-        {" - "}
-        <span>About Page</span>
-      </p>
+    <main class="flex flex-row place-content-between mx-auto text-gray-700 p-4 items-center px-[180px]">
+      <div class="flex flex-col gap-4 items-center">
+        <h1 class="text-lg font-bold">CHOOSE A PHASE</h1>
+        <div class="flex flex-col gap-2 items-center">
+          <Chip phase="HRI PHASE" />
+          <Chip phase="POUR PHASE" />
+          <Chip phase="MOBILE PHASE" />
+        </div>
+      </div>
+
+      <div>
+        <img
+          src="/assets/images/flowchart.png"
+          class="w-[520px] cursor-zoom-in"
+          alt="flowchart"
+          onClick={() => setOpenImage(true)}
+        />
+      </div>
+
+      <ImageModal
+        open={openImage}                 // pass the accessor
+        onClose={() => setOpenImage(false)}
+        src="/assets/images/flowchart.png"
+        alt="flowchart"
+      />
     </main>
   );
 }

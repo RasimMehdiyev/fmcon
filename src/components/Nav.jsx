@@ -5,8 +5,9 @@ export default function Nav() {
   const active = (path) =>
     path == location.pathname ? "border-sky-600  font-bold" : "border-transparent hover:border-sky-600";
   return (
-    <nav class="w-full flex justify-center mb-[50px]">
-      <ul class="w-[50%] container flex items-center p-3 text-black place-content-between border-b-1 border-gray-300">
+    <nav class="w-[90%] flex mb-[30px] flex-row place-content-between border-b-1 border-gray-300 px-[10px] py-[5px] items-center mx-auto">
+      <h1 class="text-4xl font-bold text-center my-[20px] text-[#51676D]">RoundTable</h1>
+      <ul class="w-[50%] container flex items-center p-3 text-black place-content-between">
         <li class={`border-b-2 ${active("/")} mx-1.5 sm:mx-6`}>
           <a href="/">Study info</a>
         </li>
