@@ -1,60 +1,44 @@
 export default function Table() {
-    return(
-        <div class="flex flex-col gap-2 mb-[20px] ">
+    return (
+        <div className="flex flex-col gap-2 mb-[20px] items-center">
             <span> Please review the items and adjust your final ratings </span>
-            <div class="w-[100%] h-auto  flex flex-col">
-                        <div class="mx-[250px] h-[60px] bg-[#F6F8F6] border-1 border-gray-300 flex flex-row place-content-between items-center px-4">
-                            <p class="text-xl font-medium">Item</p>
-                            <p class="text-xl font-medium">Subject</p>
-                            <div class="flex flex-row gap-2 ">
-                                <p class="text-xl w-[30px] font-medium">S</p>
-                                <p class="text-xl w-[30px] font-medium">O</p>
-                                <p class="text-xl w-[30px] font-medium">D</p>
-                                <p class="text-xl w-[30px] font-medium">E</p>
+            <table className="w-[70%] border-collapse">
+                <thead>
+                    <tr className="h-[60px] bg-[#F6F8F6] border-1 border-gray-300">
+                        <th className="text-xl font-medium pl-4">Item</th>
+                        <th className="text-xl font-medium pl-4">Subject</th>
+                        <th className="px-4">
+                            <div className="flex flex-row gap-2 items-center justify-center">
+                                <span className="text-xl w-[30px] font-medium">S</span>
+                                <span className="text-xl w-[30px] font-medium">O</span>
+                                <span className="text-xl w-[30px] font-medium">D</span>
+                                <span className="text-xl w-[30px] font-medium">E</span>
                             </div>
-                        </div>
-                        <div class="mx-[250px] h-[60px] bg-gray-50 border-1 border-gray-300 flex flex-row place-content-between items-center px-4">
-                            <p class="text-lg">Failure mode 1</p>
-                            <p class="pr-[70px] text-lg">Perception failure</p>
-                            <div class="flex flex-row gap-1 pr-3 items-center">
-                                <input placeholder="4" class="text-lg w-[30px] bg-[#CED0D1] rounded-md text-center"/>
-                                <input placeholder="5" class="text-lg w-[30px] bg-[#CED0D1] rounded-md text-center"/>
-                                <input placeholder="3" class="text-lg w-[30px] bg-[#CED0D1] rounded-md text-center"/>
-                                <input placeholder="2" class="text-lg w-[30px] bg-[#CED0D1] rounded-md text-center"/>
-                            </div>
-                        </div>
-                        <div class="mx-[250px] h-[60px] bg-gray-50 border-1 border-gray-300 flex flex-row place-content-between items-center px-4">
-                            <p class="text-lg">Failure mode 2</p>
-                            <p class="pr-[70px] text-lg">Perception failure</p>
-                            <div class="flex flex-row gap-1 pr-3 items-center">
-                                <input placeholder="4" class="text-lg w-[30px] bg-[#CED0D1] rounded-md text-center"/>
-                                <input placeholder="5" class="text-lg w-[30px] bg-[#CED0D1] rounded-md text-center"/>
-                                <input placeholder="3" class="text-lg w-[30px] bg-[#CED0D1] rounded-md text-center"/>
-                                <input placeholder="2" class="text-lg w-[30px] bg-[#CED0D1] rounded-md text-center"/>
-                            </div>
-                        </div>
-                        <div class="mx-[250px] h-[60px] bg-gray-50 border-1 border-gray-300 flex flex-row place-content-between items-center px-4">
-                            <p class="text-lg">Failure mode 3</p>
-                            <p class="pr-[70px] text-lg">Communication failure</p>
-                            <div class="flex flex-row gap-1 pr-3 items-center">
-                                <input placeholder="4" class="text-lg w-[30px] bg-[#CED0D1] rounded-md text-center"/>
-                                <input placeholder="5" class="text-lg w-[30px] bg-[#CED0D1] rounded-md text-center"/>
-                                <input placeholder="3" class="text-lg w-[30px] bg-[#CED0D1] rounded-md text-center"/>
-                                <input placeholder="2" class="text-lg w-[30px] bg-[#CED0D1] rounded-md text-center"/>
-                            </div>
-                        </div>
-                        <div class="mx-[250px] h-[60px] bg-gray-50 border-1 border-gray-300 flex flex-row place-content-between items-center px-4">
-                            <p class="text-lg">Failure mode 4</p>
-                            <p class="pr-[70px] text-lg">Hardware failure</p>
-                            <div class="flex flex-row gap-1 pr-3 items-center">
-                                <input placeholder="4" class="text-lg w-[30px] bg-[#CED0D1] rounded-md text-center"/>
-                                <input placeholder="5" class="text-lg w-[30px] bg-[#CED0D1] rounded-md text-center"/>
-                                <input placeholder="3" class="text-lg w-[30px] bg-[#CED0D1] rounded-md text-center"/>
-                                <input placeholder="2" class="text-lg w-[30px] bg-[#CED0D1] rounded-md text-center"/>
-                            </div>
-                        </div>
-                </div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {[
+                        { item: "Failure mode 1", subject: "Perception failure" },
+                        { item: "Failure mode 2", subject: "Perception failure" },
+                        { item: "Failure mode 3", subject: "Communication failure" },
+                        { item: "Failure mode 4", subject: "Hardware failure" },
+                    ].map((row, index) => (
+                        <tr key={index} className="h-[60px] bg-gray-50 border-1 border-gray-300 hover:shadow-lg hover:bg-gray-100 cursor-pointer">
+                            <td className="text-lg pl-4">{row.item}</td>
+                            <td className="text-lg pl-4">{row.subject}</td>
+                            <td className="px-4">
+                                <div className="flex flex-row gap-1 items-center items-center justify-center">
+                                    <input placeholder="4" className="text-lg w-[30px] bg-[#CED0D1] rounded-md text-center"/>
+                                    <input placeholder="5" className="text-lg w-[30px] bg-[#CED0D1] rounded-md text-center"/>
+                                    <input placeholder="3" className="text-lg w-[30px] bg-[#CED0D1] rounded-md text-center"/>
+                                    <input placeholder="2" className="text-lg w-[30px] bg-[#CED0D1] rounded-md text-center"/>
+                                </div>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
-        
     )
 }
