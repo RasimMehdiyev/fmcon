@@ -9,6 +9,7 @@ export default function App() {
     <Router
       root={props => (
         <>
+          <h1 class="text-4xl font-bold text-center my-[20px] text-[#51676D]">RoundTable</h1>
           <Nav />
           <Suspense>{props.children}</Suspense>
         </>
