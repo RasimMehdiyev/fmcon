@@ -20,6 +20,9 @@ export default function Nav() {
         <li class={`border-b-2 ${active("/r3")} mx-1.5 sm:mx-6`}>
           <a href="/r3">Round 3</a>
         </li>
+        <li class={`border-b-2 ${active("/finale")} mx-1.5 sm:mx-6`}>
+          <a href="/r3">Finale</a>
+        </li>
       </ul>
     </nav>
   );
