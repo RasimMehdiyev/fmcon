@@ -2,7 +2,7 @@ import Chip from "~/components/Chip";
 import { createSignal, createEffect } from "solid-js";
 import ImageModal from "~/components/ImageModal";
 
-export default function About() {
+export default function Round1() {
   const [openImage, setOpenImage] = createSignal(false);
 
   createEffect(() => {

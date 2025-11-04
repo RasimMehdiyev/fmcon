@@ -5,7 +5,7 @@ import { createSignal, createResource, createEffect } from "solid-js";
 import { fetchAllFailures, addFailure } from "~/lib/failure";
 import { fetchFailureRating, fetchAllRatings } from "~/lib/ratings";
 
-export default function Round2() {
+export default function Round3() {
 
   const [orderBy, setOrderBy] = createSignal("created_at");
   const [ascending, setAscending] = createSignal(false);
