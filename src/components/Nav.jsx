@@ -21,7 +21,7 @@ export default function Nav() {
           <a href="/r3">Round 3</a>
         </li>
         <li class={`border-b-2 ${active("/finale")} mx-1.5 sm:mx-6`}>
-          <a href="/r3">Finale</a>
+          <a href="/finale">Finale</a>
         </li>
       </ul>
     </nav>

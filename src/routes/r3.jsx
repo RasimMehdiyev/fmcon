@@ -28,7 +28,6 @@ export default function Round3() {
 
   return (
     <main class="mx-auto text-gray-700 p-4">
-      <Table/>
       <Button cont_w="w-[90%]" position="right" type="SUBMIT"/>
     </main>
   );

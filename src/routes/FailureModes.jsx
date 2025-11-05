@@ -48,8 +48,12 @@ export default function FailureModes() {
   const data = () => failureData[mode()] || failureData["default"];
   return (
     <div style={{ "font-family": "system-ui, sans-serif", padding: "16px" }}>
-      <h2>{data().title}</h2>
-      <p style={{ color: "#555", "margin-top": "4px" }}>{data().description}</p>
+      <div>
+        <div>
+          <h2 class="text-xl font-bold">{data().title}</h2>
+          <p style={{ color: "#555", "margin-top": "4px" }}>{data().description}</p>
+        </div>
+      </div>
 
       <div style={{ "margin-top": "12px" }}>
         <For each={data().items}>
@@ -72,8 +76,8 @@ export default function FailureModes() {
                 </strong>
                 <small style={{ color: "#666" }}>{it.note}</small>
               </div>
-                    <div
-                    class={`px-3 py-1 rounded-xl font-semibold text-xs transition-all duration-200 transform hover:scale-125 hover:pb-2
+                <div
+                    class={`hidden px-3 py-1 rounded-xl font-semibold text-xs transition-all duration-200 transform hover:scale-125 hover:pb-2
                         ${
                         it.severity === "High"
                             ? "bg-[#ffebe6] text-[#9D1C06]"
@@ -83,7 +87,7 @@ export default function FailureModes() {
                         }`}
                     >
                     {it.severity}
-                    </div>
+                </div>
             </div>
           )}
         </For>

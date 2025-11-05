@@ -7,13 +7,13 @@ export default function Chip({ phase }) {
     if (hovered()) {
       switch (phase.toLowerCase()) {
         case "pour":
-          return "bg-[#A3E6AC]"; // light green
+          return "bg-[#A3E6AC] shadow-md"; // light green
         case "hri":
-          return "bg-[#AF8AFF]";
+          return "bg-[#AF8AFF] shadow-md";
         case "mobile":
-          return "bg-[#F67F65]"; // light pink
+          return "bg-[#F67F65] shadow-md"; // light pink
         default:
-          return "bg-[#266ACC]"; // blue for other phases
+          return "bg-[#266ACC] shadow-md"; // blue for other phases
       }
     }
     return "bg-[#CED0D1]"; // default gray when not hovered
@@ -33,7 +33,7 @@ export default function Chip({ phase }) {
       onClick={() => (window.location.href = "/" + phase.toLowerCase())}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      class={`group w-[170px] rounded-md h-[40px] text-center text-lg cursor-pointer flex items-center justify-center transition-colors duration-200 ${bgClass()}`}
+      class={`hover:shadow-md group w-[170px] rounded-md h-[40px] text-center text-lg cursor-pointer flex items-center justify-center transition-colors duration-200 ${bgClass()}`}
     >
       <span
         class={`duration-200 ease-in-out ${
