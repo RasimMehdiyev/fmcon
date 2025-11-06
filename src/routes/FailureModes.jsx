@@ -9,7 +9,6 @@ function detectModeFromPath(pathname = "/") {
   return "default";
 }
 
-
 export default function FailureModes() {
   const location = useLocation(); // SSR-consistent
   const mode = () => detectModeFromPath(location.pathname);
@@ -47,47 +46,47 @@ export default function FailureModes() {
 
   const data = () => failureData[mode()] || failureData["default"];
   return (
-    <div style={{ "font-family": "system-ui, sans-serif", padding: "16px" }}>
-      <div>
-        <div>
+    <div class="font-sans p-4 items-center">
+      <div class="flex flex-row place-content-between">
+        <div class="flex flex-col">
           <h2 class="text-xl font-bold">{data().title}</h2>
-          <p style={{ color: "#555", "margin-top": "4px" }}>{data().description}</p>
+          <p class="text-gray-600 mt-1">{data().description}</p>
         </div>
+        <div class="flex flex-row place-content-between items-center gap-2">
+          <input type="text" placeholder="Search" class="border-1 border-gray-200 rounded-md pl-3 h-[40px]"/>
+          <label htmlFor="filter"></label>
+          <select name="filter" id="filter" class="border-1 border-gray-200 rounded-md px-3 h-[40px] bg-[#266ACC] text-white items-center cursor-pointer ">
+            <option value="perception" class="bg-white text-black">Perception failures</option>
+            <option value="comm" class="bg-white text-black">Communication failures</option>
+            <option value="hw" class="bg-white text-black">Hardware failures</option>
+            <option value="mixed" class="bg-white text-black">Mixed failures</option>
+          </select>
+        </div>
+          
+
       </div>
 
-      <div style={{ "margin-top": "12px" }}>
+      <div class="mt-3">
         <For each={data().items}>
           {(it) => (
-            <div
-              style={{
-                border: "1px solid #e0e0e0",
-                "border-radius": "6px",
-                padding: "12px",
-                "margin-bottom": "8px",
-                display: "flex",
-                "justify-content": "space-between",
-                "align-items": "center",
-                gap: "12px",
-              }}
-            >
+            <div class="border border-gray-200 rounded-md p-3 mb-2 flex justify-between items-center gap-3">
               <div>
-                <strong style={{ display: "block" }}>
+                <strong class="block">
                   {it.id} — {it.name}
                 </strong>
-                <small style={{ color: "#666" }}>{it.note}</small>
+                <small class="text-gray-500 text-sm">{it.note}</small>
               </div>
-                <div
-                    class={`hidden px-3 py-1 rounded-xl font-semibold text-xs transition-all duration-200 transform hover:scale-125 hover:pb-2
-                        ${
-                        it.severity === "High"
-                            ? "bg-[#ffebe6] text-[#9D1C06]"
-                            : it.severity === "Medium"
-                            ? "bg-[#fff4e5] text-[#6A4A00]"
-                            : "bg-[#eef7ff] text-[#044C8C]"
-                        }`}
-                    >
-                    {it.severity}
-                </div>
+              <div
+                class={`hidden px-3 py-1 rounded-xl font-semibold text-xs transition-all duration-200 transform hover:scale-125 hover:pb-2 ${
+                  it.severity === "High"
+                    ? "bg-[#ffebe6] text-[#9D1C06]"
+                    : it.severity === "Medium"
+                    ? "bg-[#fff4e5] text-[#6A4A00]"
+                    : "bg-[#eef7ff] text-[#044C8C]"
+                }`}
+              >
+                {it.severity}
+              </div>
             </div>
           )}
         </For>
