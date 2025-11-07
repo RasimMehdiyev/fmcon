@@ -62,11 +62,6 @@ const AddFailure = (props) => {
                     <input type="radio" id="hw" name="failureType" value="text" />
                     <label for="hw" class="ml-2">Hardware failure</label>
                 </div>
-
-                <div>
-                    <input type="radio" id="mixed" name="failureType" value="text" class="ml-4"/>
-                    <label for="mixed" class="ml-2">Mixed failure</label>
-                </div>
             </div>
           </div>
                     <div class="flex flex-col gap-1">

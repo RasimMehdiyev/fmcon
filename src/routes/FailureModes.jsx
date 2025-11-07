@@ -18,7 +18,7 @@ export default function FailureModes() {
   const mode = () => detectModeFromPath(location.pathname);
   const [isAddFailureOpen, setIsAddFailureOpen] = createSignal(false);
   const [isEditFailureOpen, setIsEditFailureOpen] = createSignal(false);
-  const [selectedFilter, setSelectedFilter] = createSignal("Perception ▼");
+  const [selectedFilter, setSelectedFilter] = createSignal("All ▼");
   const [open, setOpen] = createSignal(false);
 
   const select = (filter) => {
@@ -68,6 +68,13 @@ export default function FailureModes() {
     setIsEditFailureOpen(false);
   }
 
+  const filteredItems = () => {
+    const sel = selectedFilter() || "All";
+    const key = sel.replace(" ▼", "").trim();
+    if (key.toLowerCase() === "all") return data().items;
+    return data().items.filter((it) => it.severity && it.severity.toLowerCase() === key.toLowerCase());
+  };
+
   return (
     <div class="font-sans p-4 items-center mx-auto w-[90%]">
       <div class="flex flex-row place-content-between">
@@ -106,14 +113,14 @@ export default function FailureModes() {
               <button class="block w-full text-left px-4 py-2 hover:bg-gray-100" onClick={() => select('Perception ▼')}>Perception</button>
               <button class="block w-full text-left px-4 py-2 hover:bg-gray-100" onClick={() => select('Communication ▼')}>Communication</button>
               <button class="block w-full text-left px-4 py-2 hover:bg-gray-100" onClick={() => select('Hardware ▼')}>Hardware</button>
-              <button class="block w-full text-left px-4 py-2 hover:bg-gray-100" onClick={() => select('Mixed ▼')}>Mixed</button>
+              <button class="block w-full text-left px-4 py-2 hover:bg-gray-100" onClick={() => select('All ▼')}>All</button>
             </div>
           </div>
         </div>
       </div>
 
       <div class="mt-3">
-        <For each={data().items}>
+        <For each={filteredItems()}>
           {(it) => (
             <div 
               onClick = {() => setIsEditFailureOpen(true) }

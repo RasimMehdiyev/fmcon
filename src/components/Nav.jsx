@@ -24,7 +24,10 @@ export default function Nav() {
           <a href="/finale">Finale</a>
         </li>
       </ul>
-      <button class="text-4xl font-bold border border-gray-200 p-1 px-3 bg-gray-100 hover:bg-gray-400 hover:text-white rounded-lg cursor-pointer transition-colors duration-200">U</button>
+      <button 
+      //onclick move to /profile
+        onClick={() => window.location.href = '/profile' }
+        class="text-4xl font-bold border border-gray-200 p-1 px-3 bg-gray-100 hover:bg-gray-400 hover:text-white rounded-lg cursor-pointer transition-colors duration-200">U</button>
     </nav>
   );
 }
