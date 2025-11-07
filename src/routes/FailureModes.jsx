@@ -2,6 +2,7 @@ import { For, createSignal, Show } from "solid-js";
 import { useLocation } from "@solidjs/router";
 import Button from "~/components/Button";
 import AddFailure from "~/components/AddFailure";
+import EditFailure from "~/components/EditFailure";
 
 function detectModeFromPath(pathname = "/") {
   const lower = pathname.toLowerCase();
@@ -15,6 +16,7 @@ export default function FailureModes() {
   const location = useLocation();
   const mode = () => detectModeFromPath(location.pathname);
   const [isAddFailureOpen, setIsAddFailureOpen] = createSignal(false);
+  const [isEditFailureOpen, setIsEditFailureOpen] = createSignal(false);
 
   const failureData = {
     hri: {
@@ -53,8 +55,13 @@ export default function FailureModes() {
     setIsAddFailureOpen(false);
   };
 
+  const handleEditFailure = (editedFailure) => {
+    console.log("Failure edited:", editedFailure);
+    setIsEditFailureOpen(false);
+  }
+
   return (
-    <div class="font-sans p-4 items-center">
+    <div class="font-sans p-4 items-center mx-auto w-[90%]">
       <div class="flex flex-row place-content-between">
         <div class="flex flex-col">
           <div class="flex flex-row items-center gap-3">
@@ -91,7 +98,9 @@ export default function FailureModes() {
       <div class="mt-3">
         <For each={data().items}>
           {(it) => (
-            <div class="border border-gray-200 rounded-md p-3 mb-2 flex justify-between items-center gap-3">
+            <div 
+              onClick = {() => setIsEditFailureOpen(true) }
+              class="border border-gray-200 rounded-md p-3 mb-2 flex justify-between items-center gap-3 hover:shadow-md cursor-pointer">
               <div>
                 <strong class="block">
                   {it.id} — {it.name}
@@ -119,6 +128,13 @@ export default function FailureModes() {
           onClose={() => setIsAddFailureOpen(false)}
           onSave={handleSaveFailure}
         />
+      </Show>
+
+      <Show when={isEditFailureOpen()}>
+          <EditFailure 
+            onClose={() => setIsEditFailureOpen(false)}
+            onSave={handleEditFailure}
+          />
       </Show>
     </div>
   );

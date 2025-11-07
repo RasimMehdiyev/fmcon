@@ -29,7 +29,7 @@ const FailureDetailsModal = (props) => {
     
 
   return (
-    <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+    <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 mx-auto ">
       <div class="relative w-[500px] rounded-xl bg-white p-6 shadow-lg">
         <button
           class="absolute right-3 top-2 text-gray-500 hover:text-gray-700 cursor-pointer"
@@ -41,17 +41,17 @@ const FailureDetailsModal = (props) => {
         <h2 class="mb-4 text-lg font-semibold">Failure details</h2>
         <div class="flex flex-col gap-3">
 
-          <div class="flex flex-col gap-1">
+          <div class="flex flex-col gap-1 border-1 border-gray-200 p-2 rounded-lg" >
             <p>{props.data.title}</p>
-            <p>{props.data.phase} — {props.data.type}</p>
+            <p class="mt-[-5px] text-xs text-gray-400">{props.data.phase} — {props.data.type}</p>
           </div>
 
-          <div class="flex flex-col gap-1">
-            <p>{props.data.definition}</p>
+          <div class="flex flex-col gap-1 border-1 border-gray-200 p-2 rounded-lg">
+            <p><b>Definition: </b>{props.data.definition}</p>
           </div>
 
-          <div class="flex flex-col gap-1">
-            <p>{props.data.example}</p>
+          <div class="flex flex-col gap-1 border-1 border-gray-200 p-2 rounded-lg">
+            <p><b>Example:</b> {props.data.example}</p>
           </div>
 
           <button

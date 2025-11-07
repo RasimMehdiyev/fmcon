@@ -10,7 +10,7 @@ export default function Round1() {
   });
 
   return (
-    <main class="flex flex-row place-content-between mx-auto text-gray-700 p-4 items-center px-[180px]">
+    <main class="mx-auto flex flex-row place-content-between text-gray-700 p-4 items-center px-[180px]">
       <div class="flex flex-col gap-4 items-center">
         <h1 class="text-lg font-bold">CHOOSE A PHASE</h1>
         <div class="flex flex-col gap-2 items-center">

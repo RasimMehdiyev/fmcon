@@ -37,8 +37,8 @@ export default function Table({failureData}) {
                     title: "Sample Failure",
                     phase: "Execution",
                     type: "Perception failure",
-                    definition: "This is a sample definition of the failure mode.",
-                    example: "For example, the robot fails to recognize an object.",
+                    definition: "This is a sample definition of the failure mode. This is a sample definition of the failure mode. This is a sample definition of the failure mode.",
+                    example: "For example, the robot fails to recognize an object. For example, the robot fails to recognize an object. For example, the robot fails to recognize an object.",
                 }}
                 />
             </Show>
