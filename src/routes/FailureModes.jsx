@@ -4,6 +4,7 @@ import Button from "~/components/Button";
 import AddFailure from "~/components/AddFailure";
 import EditFailure from "~/components/EditFailure";
 
+
 function detectModeFromPath(pathname = "/") {
   const lower = pathname.toLowerCase();
   if (lower.includes("/hri") || lower.includes("hri")) return "hri";
@@ -17,6 +18,13 @@ export default function FailureModes() {
   const mode = () => detectModeFromPath(location.pathname);
   const [isAddFailureOpen, setIsAddFailureOpen] = createSignal(false);
   const [isEditFailureOpen, setIsEditFailureOpen] = createSignal(false);
+  const [selectedFilter, setSelectedFilter] = createSignal("Perception ▼");
+  const [open, setOpen] = createSignal(false);
+
+  const select = (filter) => {
+    setSelectedFilter(filter);
+    setOpen(false);
+  };
 
   const failureData = {
     hri: {
@@ -82,16 +90,25 @@ export default function FailureModes() {
 
         <div class="flex flex-row place-content-between items-center gap-2">
           <input type="text" placeholder="Search" class="border-1 border-gray-200 rounded-md pl-3 h-[40px]" />
-          <select
-            name="filter"
-            id="filter"
-            class="border-1 border-gray-200 rounded-md px-3 h-[40px] bg-[#266ACC] text-white items-center cursor-pointer"
-          >
-            <option value="perception" class="bg-white text-black">Perception failures</option>
-            <option value="comm" class="bg-white text-black">Communication failures</option>
-            <option value="hw" class="bg-white text-black">Hardware failures</option>
-            <option value="mixed" class="bg-white text-black">Mixed failures</option>
-          </select>
+          <div class="relative">
+            <button
+              onClick={() => setOpen(!open())}
+              class="bg-[#266ACC] text-white px-3 h-[40px] rounded-md"
+            >
+              {selectedFilter()}
+            </button>
+
+            <div
+              class={`absolute right-0 mt-1 w-48 bg-white rounded-md shadow-md overflow-hidden 
+                transition-all duration-700 ease-out origin-top 
+                ${open() ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0'}`}
+            >
+              <button class="block w-full text-left px-4 py-2 hover:bg-gray-100" onClick={() => select('Perception ▼')}>Perception</button>
+              <button class="block w-full text-left px-4 py-2 hover:bg-gray-100" onClick={() => select('Communication ▼')}>Communication</button>
+              <button class="block w-full text-left px-4 py-2 hover:bg-gray-100" onClick={() => select('Hardware ▼')}>Hardware</button>
+              <button class="block w-full text-left px-4 py-2 hover:bg-gray-100" onClick={() => select('Mixed ▼')}>Mixed</button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -100,7 +117,7 @@ export default function FailureModes() {
           {(it) => (
             <div 
               onClick = {() => setIsEditFailureOpen(true) }
-              class="border border-gray-200 rounded-md p-3 mb-2 flex justify-between items-center gap-3 hover:shadow-md cursor-pointer">
+              class="border border-gray-200 rounded-md p-3 mb-2 flex justify-between items-center gap-3 hover:shadow-md cursor-pointer transition-shadow duration-200">
               <div>
                 <strong class="block">
                   {it.id} — {it.name}

@@ -4,7 +4,7 @@ export default function Button({type, onClick, position, cont_w, bfcolor="text-[
     const cont_width = cont_w ? cont_w : "w-full"
     return(
         <div class={`${buttonPosition} ${cont_width}`}>        
-            <button onClick={onClick} class={`${bc} ${bfont} ${bfcolor} ${bw} ${bh} rounded-lg cursor-pointer ${bch} font-medium text-center`}>{type}</button>
+            <button onClick={onClick} class={`${bc} ${bfont} ${bfcolor} ${bw} ${bh} rounded-lg cursor-pointer ${bch} font-medium text-center transition-colors duration-200`}>{type}</button>
         </div>
     )
 } 

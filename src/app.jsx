@@ -4,6 +4,7 @@ import { Suspense } from "solid-js";
 import Nav from "~/components/Nav";
 import FailureModes from "~/routes/FailureModes";
 import FailureDetails from "~/routes/FailureDetails";
+import Finale from "~/routes/Finale";
 import "./app.css";
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
       <Route path="/pour" component={FailureModes}/>
       <Route path="/mobile" component={FailureModes}/>
       <Route path="/failure-details" component={FailureDetails}/>
+      <Route path="/finale" component={Finale}/>
       <FileRoutes />
     </Router>
   );
