@@ -26,9 +26,8 @@ export default function ImageModal(props) {
           class="bg-white rounded shadow-lg max-w-[96vw] max-h-[96vh] overflow-hidden"
           onClick={(e) => e.stopPropagation()}
         >
-          <div class="flex items-center justify-between p-2 border-b">
-            <div class="text-sm font-medium">Preview</div>
-            <div class="flex gap-2">
+          <div class="flex items-center justify-between p-2">
+            <div class="w-full flex gap-2 flex-row items-center place-content-end">
               <button
                 class="px-2 py-1 bg-gray-100 rounded hover:bg-gray-200"
                 onClick={() => setScale((s) => Math.min(3, +(s + 0.25).toFixed(2)))}

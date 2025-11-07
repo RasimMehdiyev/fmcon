@@ -5,9 +5,9 @@ import FailureDetailsModal from "./FailureDetailsModal";
 export default function Table({failureData}) {
     const [isModalOpen, setIsModalOpen] = createSignal(false);
     return (
-        <div className="flex flex-col gap-2 mb-[20px] items-center">
+        <div className="flex flex-col gap-2 mb-[20px]">
             <span> Please review the items and adjust your final ratings </span>
-            <div className="w-[90%] border-collapse">
+            <div className="border-collapse">
                 <For each={failureData}>
                     {(row) => (
                         <div 

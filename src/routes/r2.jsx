@@ -34,7 +34,8 @@ export default function Round2() {
     ;
 
   return (
-    <main class="mx-auto text-gray-700 p-4">
+    <main class="mx-auto text-gray-700 p-4 w-[90%]">
+      <h1 class="font-bold text-2xl pb-2">Failure Mode Rating</h1>
       <Table failureData={failureDatas} />
       <Button cont_w="w-[90%]" position="right" type="SUBMIT"/>
 

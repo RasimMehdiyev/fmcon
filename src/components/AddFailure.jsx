@@ -31,7 +31,7 @@ const AddFailure = (props) => {
     <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
       <div class="relative w-[500px] rounded-xl bg-white p-6 shadow-lg">
         <button
-          class="absolute right-3 top-2 text-gray-500 hover:text-gray-700 cursor-pointer"
+          class="absolute right-3 top-2 cursor-pointer px-2 py-1 bg-red-100 text-red-700 rounded hover:bg-red-200"
           onClick={props.onClose}
         >
           ✕
