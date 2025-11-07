@@ -1,7 +1,9 @@
-import { For } from "solid-js"
+import { For, createSignal } from "solid-js"
+import FailureDetailsModal from "./FailureDetailsModal";
+
 
 export default function Table({failureData}) {
-        
+    const [isModalOpen, setIsModalOpen] = createSignal(false);
     return (
         <div className="flex flex-col gap-2 mb-[20px] items-center">
             <span> Please review the items and adjust your final ratings </span>
@@ -9,7 +11,7 @@ export default function Table({failureData}) {
                 <For each={failureData}>
                     {(row) => (
                         <div 
-                        onClick={() => (window.location.href = "/" + "failure-details")}
+                        onClick={() => setIsModalOpen(true)}
                         class="flex flex-row border-[1px] border-[#e0e0e0] p-[12px] mb-[8px] place-content-between rounded-lg hover:shadow-md cursor-pointer">
                             <div class="text-left px-2 flex flex-col">
                                 <strong class="text-black">{row.item}</strong>
@@ -28,6 +30,18 @@ export default function Table({failureData}) {
 
             </div>
             
+            <Show when={isModalOpen()}>
+                <FailureDetailsModal
+                onClose={() => setIsModalOpen(false)}
+                data={{
+                    title: "Sample Failure",
+                    phase: "Execution",
+                    type: "Perception failure",
+                    definition: "This is a sample definition of the failure mode.",
+                    example: "For example, the robot fails to recognize an object.",
+                }}
+                />
+            </Show>
         </div>
     )
 }

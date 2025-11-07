@@ -35,8 +35,9 @@ export default function Round2() {
 
   return (
     <main class="mx-auto text-gray-700 p-4">
-      <Table failureData={failureDatas}/>
+      <Table failureData={failureDatas} />
       <Button cont_w="w-[90%]" position="right" type="SUBMIT"/>
+
     </main>
   );
 }
