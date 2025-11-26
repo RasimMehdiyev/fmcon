@@ -28,7 +28,9 @@ export default function Round3() {
 
   return (
     <main class="mx-auto text-gray-700 p-4">
-      <Button cont_w="w-[90%]" position="right" type="SUBMIT"/>
+      <div class="w-[90%] flex justify-end mt-[20px]">
+        <Button>SUBMIT</Button>
+      </div>
     </main>
   );
 }

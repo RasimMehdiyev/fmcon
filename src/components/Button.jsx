@@ -1,10 +1,34 @@
-export default function Button({type, onClick, position, cont_w, bfcolor="text-[#F6F8F6]" , bw = 'w-[145px]', bh = "h-[40px]", bc = 'bg-[#266ACC]', bch="hover:bg-[#184079]" , bfont="text-lg"}) {
-    
-    const buttonPosition = position === "right" ? "flex justify-end mt-[20px]" : "flex justify-start"
-    const cont_width = cont_w ? cont_w : "w-full"
-    return(
-        <div class={`${buttonPosition} ${cont_width}`}>        
-            <button onClick={onClick} class={`${bc} ${bfont} ${bfcolor} ${bw} ${bh} rounded-lg cursor-pointer ${bch} font-medium text-center transition-colors duration-200`}>{type}</button>
-        </div>
-    )
-} 
+const variants = {
+  primary: "bg-[#b9ceeb] text-black hover:bg-[#9ab9e3]",
+  secondary: "bg-gray-200 text-gray-800 hover:bg-gray-300",
+};
+
+const sizes = {
+  sm: "h-8 px-3 text-sm",
+  md: "h-10 px-4 text-base",
+  lg: "h-12 px-6 text-lg",
+};
+
+export default function Button(props) {
+  const { variant = "primary", size = "md", class: className, children, ...rest } = props;
+
+  const classes = [
+    "rounded-lg",
+    "cursor-pointer",
+    "font-medium",
+    "text-center",
+    "transition-colors",
+    "duration-200",
+    variants[variant],
+    sizes[size],
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  return (
+    <button class={classes} {...rest}>
+      {children}
+    </button>
+  );
+}

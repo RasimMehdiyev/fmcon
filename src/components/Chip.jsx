@@ -1,27 +1,16 @@
 import { createSignal } from "solid-js";
+import { FaSolidPencil } from 'solid-icons/fa'
 
-export default function Chip({ phase }) {
+export default function Chip(props) {
   const [hovered, setHovered] = createSignal(false);
 
   const bgClass = () => {
-    if (hovered()) {
-      switch (phase.toLowerCase()) {
-        case "pour":
-          return "bg-[#A3E6AC] shadow-md"; // light green
-        case "hri":
-          return "bg-[#AF8AFF] shadow-md";
-        case "mobile":
-          return "bg-[#F67F65] shadow-md"; // light pink
-        default:
-          return "bg-[#266ACC] shadow-md"; // blue for other phases
-      }
-    }
-    return "bg-[#CED0D1]"; // default gray when not hovered
+      return "bg-[#b9ceeb] shadow-md"; // blue for other phases
   };
 
   const textClass = () => {
     if (hovered()) {
-      return ["pour", "hri", "mobile"].includes(phase.toLowerCase())
+      return ["1", "2", "3"].includes(props.type)
         ? "text-black"
         : "text-white";
     }
@@ -30,17 +19,12 @@ export default function Chip({ phase }) {
 
   return (
     <button
-      onClick={() => (window.location.href = "/" + phase.toLowerCase())}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      class={`hover:shadow-md group w-[170px] rounded-md h-[40px] text-center text-lg cursor-pointer flex items-center justify-center transition-colors duration-200 ${bgClass()}`}
+      class={`${props.class} ${bgClass()} ${textClass()} flex items-center justify-center hover:bg-[#9ab9e3]`}
     >
-      <span
-        class={`duration-200 ease-in-out ${
-          hovered() ? `${textClass()} text-4xl pb-2` : "text-black"
-        }`}
-      >
-        {hovered() ? "→" : phase.toUpperCase()}
+      <span>
+        <FaSolidPencil />
       </span>
     </button>
   );
