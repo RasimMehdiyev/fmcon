@@ -1,22 +1,53 @@
-import { createSignal } from "solid-js";
+import { createEffect, createResource, Show } from "solid-js";
 import Table from "~/components/Table";
+import { fetchFailuresWithStats } from "~/lib/ratings";
+import { fetchIrr } from "~/lib/ratings";
+import { fetchFailures } from "~/lib/failure"
+import { createSignal, onMount, } from "solid-js";
+import IRRInterpretation from "~/components/IRRInterpretation";
 
-const Finale = () => {
 
-    const failureDatas = [
-        { item: "F01", subject: "Perception failure", S: 1, O: 4, D: 6, E: 8 },
-        { item: "F02", subject: "Perception failure", S: 2, O: 5, D: 7, E: 9 },
-        { item: "F03", subject: "Communication failure", S: 3, O: 6, D: 8, E: 10 },
-        { item: "F04", subject: "Hardware failure", S: 4, O: 7, D: 9, E: 6 },
-    ]
-    ;
+export default function Finale() {
+    const [ratingData, setRatingData] = createSignal([]);
+    const [failureData, setFailureData] = createSignal([])
+    const [ready, setReady] = createSignal(false);
+
+    onMount(() => setReady(true));
+
+    const [ratings, { refetch: refetchRatings }] = createResource(
+        ready,
+        (isReady) => (isReady ? fetchFailuresWithStats() : []),
+        { initialValue: [] }
+    );
+    const [irr, { refetch: refetchIrr }] = createResource(
+        ready,
+        (isReady) => (isReady ? fetchIrr() : []),
+        { initialValue: [] }
+    );
+
+
+    const [failures] = createResource(
+        ready,
+        (isReady) => (isReady ? fetchFailures() : []),
+        { initialValue: [] }
+    );
+
+    createEffect(() => {
+        setFailureData((prev) => ({
+            ...prev,
+            items: failures() ?? [],
+        }));
+
+        setRatingData(ratings() ?? []);
+    });
 
     return (
         <main class="mx-auto text-gray-700 p-4 w-[90%]">
             <h1 class="font-bold text-2xl pb-2">Final Results</h1>
-            <Table failureData={failureDatas} isRating={true}/>
+            <Show when={irr()}>
+                <IRRInterpretation irr={irr()} />
+            </Show>
+            <Table failureData={failures()} ratingData={ratings()} irr={irr()} mode={"finale"} />
         </main>
     );
 };
-
-export default Finale;

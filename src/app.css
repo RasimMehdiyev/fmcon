@@ -20,3 +20,7 @@ body {
 main{
   width: 95%;
 }
+
+button{
+  cursor: pointer;
+}

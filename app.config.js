@@ -7,5 +7,13 @@ export default defineConfig({
     ssr: {
       noExternal: ["solid-icons"],
     },
+    server: {
+      proxy: {
+        "/api": {
+          target:"http://localhost:8000",
+          changeOrigin: true,
+        },
+      },
+    },
   },
 });

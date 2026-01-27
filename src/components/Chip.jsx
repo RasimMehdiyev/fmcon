@@ -21,10 +21,10 @@ export default function Chip(props) {
     <button
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      class={`${props.class} ${bgClass()} ${textClass()} flex items-center justify-center hover:bg-[#9ab9e3]`}
+      class={`${props.class} ${bgClass()} ${textClass()} flex items-center justify-center bg-black hover:pt-[8px]`}
     >
       <span>
-        <FaSolidPencil />
+        <FaSolidPencil color="white" />
       </span>
     </button>
   );

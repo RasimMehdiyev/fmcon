@@ -22,6 +22,7 @@ const FailureDetailsModal = (props) => {
 
     createEffect(() => {
         // close on ESC key
+        console.log("props.data:", props.data);
         const onKey = (e) => e.key === "Escape" && props.onClose();
         window.addEventListener("keydown", onKey);
         return () => window.removeEventListener("keydown", onKey);
@@ -43,7 +44,7 @@ const FailureDetailsModal = (props) => {
 
                     <div class="flex flex-col gap-1 border-1 border-gray-200 p-2 rounded-lg" >
                         <p class="font-bold">{props.data.title}</p>
-                        <p class="mt-[-5px] text-xs text-gray-400">{props.data.phase} — {props.data.type}</p>
+                        <p class="mt-[-5px] text-xs text-gray-400">{props.data.stepsAffected}</p>
                     </div>
 
                     <div class="flex flex-col gap-1 border-1 border-gray-200 p-2 rounded-lg">
@@ -52,6 +53,32 @@ const FailureDetailsModal = (props) => {
 
                     <div class="flex flex-col gap-1 border-1 border-gray-200 p-2 rounded-lg">
                         <p><b>Example:</b> {props.data.example}</p>
+                    </div>
+
+                    <div>
+                        <div>
+                            {/* <input
+                                type="text"
+                                placeholder={row.S}
+                                value={ratings()[`${row.id}-S`] || ""}
+                                onInput={(e) => setRatings({...ratings(), [`${row.id}-S`]: e.target.value})}
+                                class="text-center h-[30px] w-[40px] bg-[#ECF0F1] rounded-md text-lg border-[1px] border-[#e0e0e0]"
+                            />
+                            <input
+                                type="text"
+                                placeholder={row.O}
+                                value={ratings()[`${row.id}-O`] || ""}
+                                onInput={(e) => setRatings({...ratings(), [`${row.id}-O`]: e.target.value})}
+                                class="text-center h-[30px] w-[40px] bg-[#ECF0F1] rounded-md text-lg border-[1px] border-[#e0e0e0]"
+                            />
+                            <input
+                                type="text"
+                                placeholder={row.D}
+                                value={ratings()[`${row.id}-D`] || ""}
+                                onInput={(e) => setRatings({...ratings(), [`${row.id}-D`]: e.target.value})}
+                                class="text-center h-[30px] w-[40px] bg-[#ECF0F1] rounded-md text-lg border-[1px] border-[#e0e0e0]"
+                            />                            */}
+                        </div>
                     </div>
 
                     <button

@@ -21,7 +21,7 @@ export default function Home() {
     },
   ];
   return (
-    <main class="text-left mx-auto text-gray-700 p-4 w-[90%]">
+    <main class="text-left mx-auto text-gray-700 p-4 w-[90%] items-center max-w-4xl">
       <h1 class="font-bold text-2xl pb-2">Expert Consensus Study</h1>
       <p>
         The purpose of this study to discover and rank the most important failure modes and explanation needs for

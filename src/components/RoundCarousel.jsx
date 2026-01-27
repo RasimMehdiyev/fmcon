@@ -23,7 +23,7 @@ export default function RoundCarousel(props) {
   const active = () => props.rounds[activeIdx()];
 
   return (
-    <div class="max-w-3xl">
+    <div class="max-w-3xl ">
       <div class="flex items-center justify-between mb-3">
         <div class="text-sm text-gray-600">
           {activeIdx() + 1} / {props.rounds.length}
@@ -37,7 +37,7 @@ export default function RoundCarousel(props) {
             class={[
               "px-3 py-1.5 rounded-lg text-sm border",
               activeIdx() === 0
-                ? "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed"
+                ? "bg-gray-100 text-gray-400 border-gray-200 !cursor-not-allowed"
                 : "bg-white hover:bg-gray-50 border-gray-300",
             ].join(" ")}
           >
@@ -51,7 +51,7 @@ export default function RoundCarousel(props) {
             class={[
               "px-3 py-1.5 rounded-lg text-sm border",
               activeIdx() === props.rounds.length - 1
-                ? "bg-gray-100 text-gray-400 border-gray-200 cursor-not-allowed"
+                ? "bg-gray-100 text-gray-400 border-gray-200 !cursor-not-allowed"
                 : "bg-white hover:bg-gray-50 border-gray-300",
             ].join(" ")}
           >
@@ -67,7 +67,7 @@ export default function RoundCarousel(props) {
               type="button"
               onClick={() => setActiveIdx(idx)}  // <-- idx is a number
               class={[
-                "text-xs px-2 py-1 rounded-full border transition",
+                "text-xs px-2 py-1 rounded-full border transition  cursor-pointer",
                 idx === activeIdx()
                   ? "bg-gray-900 text-white border-gray-900"
                   : "bg-white text-gray-700 border-gray-300 hover:bg-gray-50",
